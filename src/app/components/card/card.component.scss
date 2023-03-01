@@ -1,0 +1,20 @@
+.card-component {   
+    background-image: url(https://cdn.stratz.com/images/dota2/heroes/abaddon_vert.png);
+    background-size: cover;
+
+    border: 1px solid grey;
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    width: 142px;
+    height: 188px;
+
+
+    transition: all .2s ease-in-out;
+
+    &:hover {
+        transform: scale(1.2);
+    }
+
+}
