@@ -7,7 +7,7 @@
     height: 200px;
 
     img {
-        width: 120px;
+        width: 235px;
 
         cursor: pointer;
     }
@@ -28,7 +28,7 @@
             width: 400px;
             height: 50px;
 
-            &:focus, &:focus, &:focus{
+            &:focus {
                 outline: none;
             }
 
@@ -55,8 +55,13 @@
     align-items: center;
     gap: 10px;
 
-    .btn-str{
-        background-image: url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-str.png);
+    p {
+        color: grey;
+        text-align: center;
+        text-transform: capitalize;
+    }
+
+    button {
         background-repeat: no-repeat;
         background-size: contain;
 
@@ -67,34 +72,18 @@
     
         cursor: pointer;
         border: none;
+    }
+    
+
+    .btn-str{
+        background-image: url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-str.png);
     }
     
     .btn-agi {
         background-image: url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-agi.png);
-        background-repeat: no-repeat;
-        background-size: contain;
-
-        border-radius: 5px;
-    
-        width: 40px;
-        height: 35px;
-    
-        cursor: pointer;
-        border: none;
     }
     
     .btn-int {
         background-image: url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-int.png);
-        background-repeat: no-repeat;
-        background-size: contain;
-
-        border-radius: 5px;
-    
-        width: 40px;
-        height: 35px;
-    
-        cursor: pointer;
-        border: none;
     }
 }
-
