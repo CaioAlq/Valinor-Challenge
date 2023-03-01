@@ -20,6 +20,8 @@ export class HeroesComponent implements OnInit{
         query: HERO_DESCRIPTIONS
       })
       .valueChanges.subscribe((result: any) => {
+          console.log(result);
+          
           this.heroes = result?.data?.heroes;
           this.error = result.error
       })
