@@ -1,6 +1,7 @@
-<div class="heroes">
-    <div class="hero-card" *ngFor="let hero of heroes">
-        <img [src]="'https://cdn.cloudflare.steamstatic.com/' + hero.img" alt="" srcset="">
+<div class="card-container">
+    <div class="card" *ngFor="let hero of heroes">
+        <img [src]="'https://cdn.cloudflare.steamstatic.com/' + hero.img" alt={{hero.localized_name}} srcset="">
+        <span>{{hero.localized_name}}</span>
     </div>
-    
 </div>
+

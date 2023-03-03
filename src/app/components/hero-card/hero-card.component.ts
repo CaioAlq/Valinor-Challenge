@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Heroes } from 'src/app/shared/model/heroes.model';
+import { HeroesLore } from 'src/app/shared/model/heroesLore.model';
 import { HeroesService } from 'src/app/shared/services/heroes.service';
 
 @Component({

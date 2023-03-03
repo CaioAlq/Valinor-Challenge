@@ -12,8 +12,10 @@ export class HeroesService {
   constructor(private http: HttpClient) { }
 
   public getHeroesData(params: string):Observable<object> {
-    return this.http.get<object>(this.apiUrl + params).pipe(map((JSONHeroes) => {
+    return this.http.get<object>(this.apiUrl + params).pipe(
+      map((JSONHeroes) => {
       return Object.values(JSONHeroes)
-    }), tap(console.log))
+      }), 
+      tap(console.log))
   }
 }
