@@ -15,7 +15,6 @@ export class HeroesService {
     return this.http.get<object>(this.apiUrl + params).pipe(
       map((JSONHeroes) => {
       return Object.values(JSONHeroes)
-      }), 
-      tap(console.log))
+      }))
   }
 }

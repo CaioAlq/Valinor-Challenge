@@ -4,6 +4,9 @@ import { HeaderComponent } from 'src/app/components/header/header.component';
 import { HomeComponent } from './home.component';
 import { HeroCardComponent } from 'src/app/components/hero-card/hero-card.component';
 
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -12,7 +15,9 @@ import { HeroCardComponent } from 'src/app/components/hero-card/hero-card.compon
     HeroCardComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatPaginatorModule,
+    BrowserAnimationsModule
   ],
   exports: [
     HomeComponent
