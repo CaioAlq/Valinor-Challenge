@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Hero } from 'src/app/shared/model/hero.model';
 import { HeroLore } from 'src/app/shared/model/hero-lore.model';
 import { HeroesService } from 'src/app/shared/services/heroes.service';
-
+import { MatPaginator } from '@angular/material/paginator';
+import { elementAt } from 'rxjs';
 
 @Component({
   selector: 'da-hero-card',
@@ -14,9 +15,11 @@ import { HeroesService } from 'src/app/shared/services/heroes.service';
 export class HeroesComponent implements OnInit{
   
   heroes: Hero[] = []
-  heroes_lore: HeroLore[] = [];
-  filteredHero: Hero[] = []
-  pageHeroes: Hero[] = [];
+  // heroes_lore: HeroLore[] = [];
+  filteredHero: Hero[] = [];
+  pagedHero: Hero[] = [];
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   private _searchHero = ''
   
@@ -26,10 +29,13 @@ export class HeroesComponent implements OnInit{
 
   set searchHero(value: string) {
     this._searchHero = value;
-    this.filteredHero = this.performFilter(value);
+    this.filteredHero = this.searchFilter(value);
+    this.pagedHero = this.filteredHero;
+
+    this.paginator.firstPage();
   }
 
-  performFilter(filterBy: string): Hero[] {
+  searchFilter(filterBy: string): Hero[] {
     filterBy = filterBy.toLocaleLowerCase();
     return this.heroes.filter((hero: Hero) =>
       hero.localized_name.toLocaleLowerCase().includes(filterBy));
@@ -39,6 +45,7 @@ export class HeroesComponent implements OnInit{
 
  ngOnInit(): void {
   this.getHeroes(); 
+
  }
 
  getHeroes(): void {
@@ -57,11 +64,40 @@ export class HeroesComponent implements OnInit{
       }
     })
 
-    this.pageHeroes = this.heroes;
+    this.filteredHero = this.heroes;
+    this.pagedHero = this.filteredHero;
+
   })
  }
 
+ filterHeroes(value: string): any {
+  if(value === 'strength') {
+    this.filteredHero = [...this.heroes].filter(e => e.primary_attr === 'strength');
+    this.pagedHero = this.filteredHero;
+    this.paginator.firstPage();
+  }
+
+  if(value === 'intelligence') {
+    this.filteredHero = [...this.heroes].filter(e => e.primary_attr === 'intelligence');
+    this.pagedHero = this.filteredHero;
+    this.paginator.firstPage();
+  }
+
+  if(value === 'agility') {
+    this.filteredHero = [...this.heroes].filter(e => e.primary_attr === 'agility');
+    this.pagedHero = this.filteredHero;
+    this.paginator.firstPage();
+  }
+
+  if(value === 'all') {
+    this.filteredHero = [...this.heroes];
+    this.pagedHero = this.filteredHero;
+    this.paginator.firstPage();
+  }
+}
+
  onPageChange($event: { pageIndex: number; pageSize: number; }) {
-  this.pageHeroes =  this.heroes.slice($event.pageIndex*$event.pageSize, $event.pageIndex*$event.pageSize + $event.pageSize);
+  this.pagedHero = [...this.filteredHero].slice($event.pageIndex*$event.pageSize, $event.pageIndex*$event.pageSize + $event.pageSize);  
  }
+
 }
