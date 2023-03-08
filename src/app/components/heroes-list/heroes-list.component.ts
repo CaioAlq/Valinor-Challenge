@@ -1,21 +1,18 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Hero } from 'src/app/shared/model/hero.model';
-import { HeroLore } from 'src/app/shared/model/hero-lore.model';
 import { HeroesService } from 'src/app/shared/services/heroes.service';
 import { MatPaginator } from '@angular/material/paginator';
-import { elementAt } from 'rxjs';
 
 @Component({
-  selector: 'da-hero-card',
-  templateUrl: './heroes.component.html',
-  styleUrls: ['./heroes.component.scss'],
+  selector: 'da-hero-list',
+  templateUrl: './heroes-list.component.html',
+  styleUrls: ['./heroes-list.component.scss'],
   providers: [HeroesService]
 })
 
-export class HeroesComponent implements OnInit{
+export class HeroesListComponent implements OnInit{
   
   heroes: Hero[] = []
-  // heroes_lore: HeroLore[] = [];
   filteredHero: Hero[] = [];
   pagedHero: Hero[] = [];
 
@@ -63,7 +60,7 @@ export class HeroesComponent implements OnInit{
         attr.primary_attr = 'strength'
       }
     })
-
+    
     this.filteredHero = this.heroes;
     this.pagedHero = this.filteredHero;
 

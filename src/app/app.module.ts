@@ -10,12 +10,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
 import { FormsModule } from '@angular/forms';
-import { HeroesComponent } from './components/heroes/heroes.component';
+import { HomeComponent } from './pages/home/home.component';
+import { HeroDetailsComponent } from './pages/hero-details/hero-details.component';
+import { HeroDetailsModule } from './pages/hero-details/hero-details.module';
+import { HeaderComponent } from './components/header/header.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -23,8 +26,12 @@ import { HeroesComponent } from './components/heroes/heroes.component';
     HttpClientModule,
     MatPaginatorModule,
     BrowserAnimationsModule,
-    HomeModule,
-    RouterModule
+    RouterModule.forRoot([
+      { path: 'heroes', component: HomeComponent },
+      { path: 'heroes/:id', component: HeroDetailsComponent },
+      { path: '', redirectTo: 'heroes', pathMatch: 'full' },
+      { path: '**', redirectTo: 'heroes', pathMatch: 'full' }  
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
