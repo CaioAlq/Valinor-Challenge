@@ -17,30 +17,32 @@ export class HeroDetailsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getHeroes();
+        this.getHeroes();
   }
 
   getHeroes(): void {
     this.heroService.getHeroesData().subscribe((data) => {
-      this.heroes = data;
+      this.heroes = [...data];
   
-      this.heroes.map ((attr) => {
-        if(attr.primary_attr === 'agi') {
-          attr.primary_attr = 'agility'
+      this.heroes.map ((hero) => {
+        if(hero.primary_attr === 'agi') {
+          hero.primary_attr = 'agility'
         };
-        if(attr.primary_attr === 'int') {
-          attr.primary_attr = 'intelligence'
+        if(hero.primary_attr === 'int') {
+          hero.primary_attr = 'intelligence'
         };
-        if(attr.primary_attr === 'str') {
-          attr.primary_attr = 'strength'
+        if(hero.primary_attr === 'str') {
+          hero.primary_attr = 'strength'
         }
-      })
 
+        hero.name = hero.name.replace("npc_dota_hero_", "");
+
+        hero.attack_type = hero.attack_type.toLowerCase();        
+      })
+    
       const id = Number(this.route.snapshot.paramMap.get('id'));
 
       this.hero = this.heroes.find((hero) => hero.id === id);
-
-      console.log(this.hero);
     })
     
   }

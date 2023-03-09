@@ -2,7 +2,7 @@
 
 @import "~font-awesome/css/font-awesome.min.css";
 
-@import url('https://fonts.googleapis.com/css2?family=Golos+Text&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;700&display=swap');
 
 /*Reset css*/
 
@@ -19,7 +19,7 @@ html, body, div, span, object, iframe, figure, h1, h2, h3, h4, h5, h6, p, blockq
     padding: 0;
     border: 0;
     font-size: 100%;
-    font-family: 'Golos Text', sans-serif;
+    font-family: 'Exo 2', sans-serif;
     vertical-align: baseline;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -60,9 +60,7 @@ input{
 
 
 body{
-    background-image: url("./assets/dota2-bg.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-color: rgb(26, 25, 25);
 
     margin: 0 auto;
 
