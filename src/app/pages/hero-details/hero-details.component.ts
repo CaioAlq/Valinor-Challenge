@@ -13,7 +13,7 @@ export class HeroDetailsComponent implements OnInit {
   id: number = 1;
   heroes: Hero[] = [];
   hero: Hero | undefined;
-  heroAbilities: any
+  heroAbilities: any[] = []
   abilities: any;
 
   constructor(private heroService: HeroesService, private route: ActivatedRoute, private router : Router) {}
@@ -49,9 +49,24 @@ export class HeroDetailsComponent implements OnInit {
         item.new_Id = i + 1;
       });
 
-       this.id = Number(this.route.snapshot.paramMap.get('id'));
+      this.id = Number(this.route.snapshot.paramMap.get('id'));
 
       this.hero = this.heroes.find((hero) => hero.new_Id === this.id);
+
+      //-------------------
+
+      this.heroes = this.heroes.map(hero => {
+        const heroAbility = this.heroAbilities.find(heroAbility => heroAbility.new_Id === hero.new_Id)
+        hero.abilities = heroAbility.abilities
+        return hero
+      })
+
+      this.heroAbilities.filter(ability => {
+        console.log(ability)
+        
+      })
+      console.log(this.heroes)
+      
     })
     
   }
@@ -59,6 +74,9 @@ export class HeroDetailsComponent implements OnInit {
   getHeroAbilities(): void {
     this.heroService.getHeroesAbilityData().subscribe((data) => {
       this.heroAbilities = [...data];
+      
+      console.log(this.heroAbilities);
+      
       
       this.heroAbilities.forEach((item: { new_Id: any; }, i: number) => {
         item.new_Id = i + 1;
@@ -71,7 +89,7 @@ export class HeroDetailsComponent implements OnInit {
     this.heroService.getAbilityData().subscribe((data) => {
       this.abilities = [...data];
 
-      console.log(this.abilities);
+      // console.log(this.abilities);
       
     })
   } 

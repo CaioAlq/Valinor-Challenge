@@ -12,5 +12,6 @@ export interface Hero {
     agi_gain: number
     str_gain: number
     int_gain: number
+    abilities: any[]
     new_Id: number
 }

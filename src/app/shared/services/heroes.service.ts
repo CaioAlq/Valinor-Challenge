@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, tap } from 'rxjs';
 import { Hero } from '../model/hero.model';
-import { HeroLore } from '../model/hero-lore.model';
 
 @Injectable({
   providedIn: 'root'
