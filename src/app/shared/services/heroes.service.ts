@@ -12,8 +12,8 @@ export class HeroesService {
   private apiUrl = 'https://api.opendota.com/api/constants/';
   
   private endpointHero = 'heroes'
-  private endpointLore = 'hero_lore'
-  private endpointAbility = 'hero_abilities'
+  private endpointHeroAbility = 'hero_abilities'
+  private endpointAbility = 'abilities'
 
   constructor(private http: HttpClient) { }
 
@@ -24,17 +24,17 @@ export class HeroesService {
       }))
   }
 
-  public getHeroesLoreData():Observable<HeroLore[]> {
-    return this.http.get<object>(this.apiUrl + this.endpointLore).pipe(
+  public getHeroesAbilityData():Observable<object[]> {
+    return this.http.get<object>(this.apiUrl + this.endpointHeroAbility).pipe(
       map((JSONHeroes) => {
       return Object.values(JSONHeroes)
       }))
   }
 
-  public getHeroesAbilityData():Observable<object[]> {
+  public getAbilityData():Observable<object[]> {
     return this.http.get<object>(this.apiUrl + this.endpointAbility).pipe(
       map((JSONHeroes) => {
-      return Object.values(JSONHeroes)
+      return Object.entries(JSONHeroes)
       }))
   }
 }

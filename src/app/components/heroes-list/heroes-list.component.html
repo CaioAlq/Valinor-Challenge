@@ -18,7 +18,7 @@
 
 
 <div class="card-container">
-        <a class="card" *ngFor="let hero of pagedHero" [routerLink]="['/heroes', hero.id ]">
+        <a class="card" *ngFor="let hero of pagedHero" [routerLink]="['/heroes', hero.new_Id ]">
             <img [src]="'https://cdn.cloudflare.steamstatic.com/' + hero.img" alt={{hero.localized_name}} srcset="">
             <img class="hero-attr" [src]="'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/hero_' + hero.primary_attr + '.png'" alt="">
             <span>

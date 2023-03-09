@@ -59,6 +59,10 @@ export class HeroesListComponent implements OnInit{
       if(attr.primary_attr === 'str') {
         attr.primary_attr = 'strength'
       }
+
+      this.heroes.forEach((item, i) => {
+        item.new_Id = i + 1;
+      });
     })
     
     this.filteredHero = this.heroes;

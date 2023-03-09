@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Hero } from 'src/app/shared/model/hero.model';
 import { HeroesService } from 'src/app/shared/services/heroes.service';
 
@@ -10,14 +10,19 @@ import { HeroesService } from 'src/app/shared/services/heroes.service';
 })
 export class HeroDetailsComponent implements OnInit {
 
+  id: number = 1;
   heroes: Hero[] = [];
   hero: Hero | undefined;
+  heroAbilities: any
+  abilities: any;
 
-  constructor(private heroService: HeroesService, private route: ActivatedRoute) {}
+  constructor(private heroService: HeroesService, private route: ActivatedRoute, private router : Router) {}
 
 
   ngOnInit(): void {
         this.getHeroes();
+        this.getHeroAbilities(); 
+        this.getAbilities();
   }
 
   getHeroes(): void {
@@ -39,11 +44,49 @@ export class HeroDetailsComponent implements OnInit {
 
         hero.attack_type = hero.attack_type.toLowerCase();        
       })
-    
-      const id = Number(this.route.snapshot.paramMap.get('id'));
 
-      this.hero = this.heroes.find((hero) => hero.id === id);
+      this.heroes.forEach((item, i) => {
+        item.new_Id = i + 1;
+      });
+
+       this.id = Number(this.route.snapshot.paramMap.get('id'));
+
+      this.hero = this.heroes.find((hero) => hero.new_Id === this.id);
     })
     
+  }
+
+  getHeroAbilities(): void {
+    this.heroService.getHeroesAbilityData().subscribe((data) => {
+      this.heroAbilities = [...data];
+      
+      this.heroAbilities.forEach((item: { new_Id: any; }, i: number) => {
+        item.new_Id = i + 1;
+      })
+    })
+  }
+
+
+  getAbilities(): void {
+    this.heroService.getAbilityData().subscribe((data) => {
+      this.abilities = [...data];
+
+      console.log(this.abilities);
+      
+    })
+  } 
+
+  next(): void {
+    if(this.id >= this.heroes.length) return;
+    this.id += 1;
+    this.router.navigate(['/heroes',this.id]);
+    this.hero = this.heroes.find((hero) => hero.new_Id === this.id);
+  } 
+
+  previous(): void {
+    if(this.id <= 1) return;
+    this.id -= 1;
+    this.router.navigate(['/heroes',this.id]);
+    this.hero = this.heroes.find((hero) => hero.new_Id === this.id);
   }
 }
