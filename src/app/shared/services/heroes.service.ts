@@ -12,7 +12,6 @@ export class HeroesService {
   
   private endpointHero = 'heroes'
   private endpointHeroAbility = 'hero_abilities'
-  private endpointAbility = 'abilities'
 
   constructor(private http: HttpClient) { }
 
@@ -25,13 +24,6 @@ export class HeroesService {
 
   public getHeroesAbilityData():Observable<object[]> {
     return this.http.get<object>(this.apiUrl + this.endpointHeroAbility).pipe(
-      map((JSONHeroes) => {
-      return Object.values(JSONHeroes)
-      }))
-  }
-
-  public getAbilityData():Observable<object[]> {
-    return this.http.get<object>(this.apiUrl + this.endpointAbility).pipe(
       map((JSONHeroes) => {
       return Object.entries(JSONHeroes)
       }))

@@ -13,22 +13,20 @@ export class HeroDetailsComponent implements OnInit {
   id: number = 1;
   heroes: Hero[] = [];
   hero: Hero | undefined;
-  heroAbilities: any[] = []
-  abilities: any;
+  heroAbilities: any[] = [];
 
   constructor(private heroService: HeroesService, private route: ActivatedRoute, private router : Router) {}
 
 
   ngOnInit(): void {
-        this.getHeroes();
         this.getHeroAbilities(); 
-        this.getAbilities();
+        this.getHeroes();
   }
 
   getHeroes(): void {
     this.heroService.getHeroesData().subscribe((data) => {
       this.heroes = [...data];
-  
+
       this.heroes.map ((hero) => {
         if(hero.primary_attr === 'agi') {
           hero.primary_attr = 'agility'
@@ -42,7 +40,17 @@ export class HeroDetailsComponent implements OnInit {
 
         hero.name = hero.name.replace("npc_dota_hero_", "");
 
-        hero.attack_type = hero.attack_type.toLowerCase();        
+        hero.attack_type = hero.attack_type.toLowerCase(); 
+        
+        const heroAbility = this.heroAbilities.find(heroAbility => heroAbility.name === hero.name)
+        hero.abilities = heroAbility.abilities;
+        hero.name_abilities = [...hero.abilities];
+
+        hero.name_abilities = hero.name_abilities.map((name) => {
+          let newName = name.replace(hero.name, "").replace(/_/g, " ");
+          name = newName;
+          return name
+        })
       })
 
       this.heroes.forEach((item, i) => {
@@ -52,57 +60,48 @@ export class HeroDetailsComponent implements OnInit {
       this.id = Number(this.route.snapshot.paramMap.get('id'));
 
       this.hero = this.heroes.find((hero) => hero.new_Id === this.id);
-
-      //-------------------
-
-      this.heroes = this.heroes.map(hero => {
-        const heroAbility = this.heroAbilities.find(heroAbility => heroAbility.new_Id === hero.new_Id)
-        hero.abilities = heroAbility.abilities
-        return hero
-      })
-
-      this.heroAbilities.filter(ability => {
-        console.log(ability)
-        
-      })
-      console.log(this.heroes)
-      
     })
     
   }
 
   getHeroAbilities(): void {
+
+    const removeAbility = ["generic_hidden", "morphling_morph", "batrider_sticky_napalm_application_damage", "crystal_maiden_freezing_field_stop", "ancient_apparition_ice_blast_release",
+                           "rubick_hidden1", "rubick_hidden2", "rubick_hidden3", "tusk_launch_snowball", "monkey_king_primal_spring_early" ]
+
     this.heroService.getHeroesAbilityData().subscribe((data) => {
       this.heroAbilities = [...data];
-      
-      console.log(this.heroAbilities);
-      
-      
-      this.heroAbilities.forEach((item: { new_Id: any; }, i: number) => {
-        item.new_Id = i + 1;
+     
+      this.heroAbilities  = this.heroAbilities.map((item) => {
+        return {
+          name: item[0],
+          abilities: item[1].abilities
+        }
       })
+
+      this.heroAbilities.map((item) => {
+        item.name = item.name.replace("npc_dota_hero_", "");
+        item.abilities = item.abilities.filter((item: string) => {
+          return !removeAbility.includes(item)
+        })
+      }) 
     })
+    
   }
 
-
-  getAbilities(): void {
-    this.heroService.getAbilityData().subscribe((data) => {
-      this.abilities = [...data];
-
-      // console.log(this.abilities);
-      
-    })
-  } 
-
   next(): void {
-    if(this.id >= this.heroes.length) return;
+    if(this.id >= this.heroes.length) {
+      this.id = 0;
+    };
     this.id += 1;
     this.router.navigate(['/heroes',this.id]);
     this.hero = this.heroes.find((hero) => hero.new_Id === this.id);
   } 
 
   previous(): void {
-    if(this.id <= 1) return;
+    if(this.id <= 1) {
+      this.id = this.heroes.length + 1;
+    };
     this.id -= 1;
     this.router.navigate(['/heroes',this.id]);
     this.hero = this.heroes.find((hero) => hero.new_Id === this.id);
