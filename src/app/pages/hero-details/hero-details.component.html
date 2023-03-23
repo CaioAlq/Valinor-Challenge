@@ -9,20 +9,14 @@
                 <span><img [src]="'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/' + hero?.attack_type + '.svg'" alt="" class="hero-attack">{{hero?.attack_type}}</span>
             </div>
 
-            <h3>Skills</h3>
-           
-            <div class="abilities-container">
-                <div class="img-ability" *ngFor="let ability of hero?.abilities; let i = index">
-                    <img [src]="'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/' + ability + '.png'" alt="">
-                    <h4>{{ hero?.name_abilities?.[i] }}</h4>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="right-container">
             <video [src]="'https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/' + hero?.name + '.webm'" autoplay="" preload="auto" loop="" playsinline="">
             </video>
+            
+        </div>
+        
+        <div class="right-container">
+
+            <h3>Attributes</h3>
 
             <div class="attributes-container">
                 <span><img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/hero_strength.png" alt=""><span class="gain-attr">{{hero?.base_str}}</span></span>
@@ -32,6 +26,15 @@
 
             <div class="roles">
                 <span *ngFor="let role of hero?.roles">{{role}}</span>
+            </div>
+
+            <h3>Skills</h3>
+           
+            <div class="abilities-container">
+                <div class="img-ability" *ngFor="let ability of hero?.abilities; let i = index">
+                    <img [src]="'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/' + ability + '.png'" alt="">
+                    <h4>{{ hero?.name_abilities?.[i] }}</h4>
+                </div>
             </div>
         </div>
     </div>
