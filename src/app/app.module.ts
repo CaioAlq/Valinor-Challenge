@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
 import { HeroDetailsComponent } from './pages/hero-details/hero-details.component';
+import { HeroDetailsModule } from './pages/hero-details/hero-details.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,8 @@ import { HeroDetailsComponent } from './pages/hero-details/hero-details.componen
     HttpClientModule,
     MatPaginatorModule,
     BrowserAnimationsModule,
+    HomeModule,
+    HeroDetailsModule,
     RouterModule.forRoot([
       { path: 'heroes', component: HomeComponent },
       { path: 'heroes/:id', component: HeroDetailsComponent },
@@ -30,7 +33,6 @@ import { HeroDetailsComponent } from './pages/hero-details/hero-details.componen
       { path: '**', redirectTo: 'heroes', pathMatch: 'full' }  
     ])
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

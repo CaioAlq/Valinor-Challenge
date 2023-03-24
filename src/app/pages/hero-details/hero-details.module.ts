@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-import { FormsModule } from '@angular/forms';
 import { HeroDetailsComponent } from './hero-details.component';
-import { HomeModule } from '../home/home.module';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -11,9 +9,8 @@ import { HomeModule } from '../home/home.module';
     HeroDetailsComponent,
   ],
   imports: [
-    FormsModule,
-    CommonModule,
-    HomeModule,
+    SharedModule,
+    RouterModule
   ]
 })
 
