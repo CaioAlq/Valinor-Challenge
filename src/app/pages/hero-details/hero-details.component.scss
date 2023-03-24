@@ -223,7 +223,7 @@
         justify-content: space-evenly;
 
         width: 375px;
-        height: 1000px;
+        height: 1300px;
 
         background-size: cover;
     }
@@ -236,7 +236,47 @@
 
         .right-container {
             width: 100%;
-            height: 400px;
+            height: 600px;
+
+            h3 {
+                font-size: 1.5rem;
+                margin: 0;
+            }
+
+            .abilities-container {
+                .img-ability {
+
+                    width: 100%;
+
+                    img {
+                        width: 60px;
+                        height: 60px;
+                    }
+    
+                    h4 {
+                        font-size: 1rem;
+                        margin-left: -30px;
+                    }
+                }
+                
+               
+            }
+
+            .attributes-container {
+                width: 100%;
+                margin-bottom: 20px;
+
+                .gain-attr {
+                    font-size: 0.9rem;
+                }
+            }
+
+            .roles {
+                flex-wrap: wrap;
+                font-size: 1rem;   
+                
+                margin-bottom: 20px;
+            }
         }
 
         .left-container {
@@ -244,11 +284,15 @@
             height: 400px;
 
             h2 {
-                font-size: 2.3rem;
+                font-size: 2rem;
             }
 
             video {
                 width: 300px;
+            }
+
+            .types-container{
+                width: 100%;
             }
         }
     }
