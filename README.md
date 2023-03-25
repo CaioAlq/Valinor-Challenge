@@ -14,7 +14,7 @@
 
 ## 💻 Sobre o projeto
 
-[Dota 2 Heroes](https://valinor-challenge.vercel.app/heroes) - é uma forma de conhecer um pouco mais sobre os personagens do jogo DOTA 2. O site permite que os jogadores pesquisem e vejam informações sobre os heróis disponíveis. Com uma interface simples e intuitiva, os usuários podem pesquisar heróis por nome ou tipo de herói e ver suas habilidades e atributos.
+[Dota 2 Heroes](https://valinor-challenge.vercel.app/heroes) - é uma forma de conhecer um pouco mais sobre os personagens do jogo DOTA 2. O site permite que os jogadores pesquisem e vejam informações sobre os heróis disponíveis no jogo. Com uma interface simples e intuitiva, os usuários podem pesquisar heróis por nome ou tipo de herói e ver suas habilidades e atributos.
 
 ---
 
