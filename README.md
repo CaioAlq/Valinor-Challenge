@@ -14,6 +14,8 @@
 
 ## 💻 Sobre o projeto
 
+> Este foi o desafio técnico que entreguei no processo seletivo da [Field Control](https://github.com/FieldControl/valinor), em 2023 ([PR #215](https://github.com/FieldControl/valinor/pull/215)). Depois participei do [Field Academy](https://github.com/CaioAlq/Field-Academy), o programa de formação da empresa, e em seguida trabalhei na Field Control.
+
 [Dota 2 Heroes](https://valinor-challenge.vercel.app/heroes) - é uma forma de conhecer um pouco mais sobre os personagens do jogo DOTA 2. O site permite que os jogadores pesquisem e vejam informações sobre os heróis disponíveis no jogo. Com uma interface simples e intuitiva, os usuários podem pesquisar heróis por nome ou tipo de herói e ver suas habilidades e atributos.
 
 ---
